@@ -8,13 +8,10 @@
 using namespace std;
 using namespace std::chrono;
 
-
 static int randomData[5000] = {0};
 std::string timer = "";
 
-
-TEST(QueueTests,DeQueue1)
-{
+TEST(QueueTests,DeQueue1){
     ArrayBasedQueue queue(5000);
     ASSERT_TRUE(queue.isEmpty());
     ASSERT_TRUE(queue.enQueue(1));
@@ -37,29 +34,22 @@ TEST(QueueTests,DeQueue1)
     ASSERT_FALSE(queue.isEmpty());
     ASSERT_EQ(4, queue.Peek());
     ASSERT_TRUE(queue.deQueue());
-
     ASSERT_TRUE(queue.isEmpty());
-
     ASSERT_FALSE(queue.deQueue());
-
 }
 
 
 // Queue Tests
-TEST(Queue, Empty)
-{
+TEST(Queue, Empty){
     // create new queue
     auto pq = QueuePriorityQueue(5000);
-
     string str = pq.PrintQueue();
     ASSERT_EQ(str, "");
 }
 
-TEST(Queue, Add)
-{
+TEST(Queue, Add){
     // create new queue
     auto pq = QueuePriorityQueue(5000);
-    
     pq.Insert(5);
     string str = pq.PrintQueue();
     ASSERT_EQ(str, "5 ");
@@ -68,11 +58,9 @@ TEST(Queue, Add)
     ASSERT_EQ(str, "10 5 ");
 }
 
-TEST(Queue, Remove)
-{
+TEST(Queue, Remove){
     // create new queue
-    auto pq = QueuePriorityQueue(5000);
-    
+    auto pq = QueuePriorityQueue(5000); 
     pq.Insert(20);
     pq.Insert(15);
     pq.Insert(10);
@@ -87,16 +75,14 @@ TEST(Queue, Remove)
 }
 
 // Heap Tests
-TEST(Heap, Empty)
-{
+TEST(Heap, Empty){
     // create new queue
     HeapPriorityQueue hp(10);
     string str = hp.PrintQueue();
     ASSERT_EQ(str, "");
 }
 
-TEST(Heap, Add)
-{
+TEST(Heap, Add){
     // create new queue
     HeapPriorityQueue hp(10);
     hp.Insert(5);
@@ -107,8 +93,7 @@ TEST(Heap, Add)
     ASSERT_EQ(str, "10 5 ");
 }
 
-TEST(Heap, Remove)
-{
+TEST(Heap, Remove){
     // create new queue
     HeapPriorityQueue hp(10);
     hp.Insert(20);
@@ -124,263 +109,235 @@ TEST(Heap, Remove)
     ASSERT_EQ(str, "10 ");
 }
 
-TEST(Queue, FiveHundred)
-{
+TEST(Queue, FiveHundred){
     auto start = high_resolution_clock::now();
     auto stop = high_resolution_clock::now();
-
     auto pq = QueuePriorityQueue(5000);
-    for (int i=0; i<500; i++)
-    {
+    for (int i=0; i<500; i++){
         pq.Insert(randomData[i]);
     }
     // report time
     stop = high_resolution_clock::now();
-    timer += "Five Hundred Queue Based Insertion: " + to_string(duration_cast<microseconds>(stop-start).count());
+    timer += "500 Queue Based Insertion: " + to_string(duration_cast<microseconds>(stop-start).count());
     timer += "\n";
     
     start = high_resolution_clock::now();
     // remove everything
-    for (int i=0; i<500; i++)
-    {
+    for (int i=0; i<500; i++){
         pq.Remove(randomData[i]);
     }
     
     // report time
     stop = high_resolution_clock::now();
-    timer += "Five Hundred Queue Based Removal: " + to_string(duration_cast<microseconds>(stop-start).count());
+    timer += "500 Queue Based Removal: " + to_string(duration_cast<microseconds>(stop-start).count());
     timer += "\n";
 }
 
-TEST(Queue, Thousand)
-{
+TEST(Queue, Thousand){
     auto start = high_resolution_clock::now();
     auto stop = high_resolution_clock::now();
-    
     auto pq = QueuePriorityQueue(5000);
-    for (int i=0; i<1000; i++)
-    {
+    for (int i=0; i<1000; i++){
         pq.Insert(randomData[i]);
     }
     
     // report time
     stop = high_resolution_clock::now();
-    timer += "One Thousand Queue Based Insertion: " + to_string(duration_cast<microseconds>(stop-start).count());
+    timer += "1000 Queue Based Insertion: " + to_string(duration_cast<microseconds>(stop-start).count());
     timer += "\n";
     start = high_resolution_clock::now();
     // remove everything
-    for (int i=0; i<1000; i++)
-    {
+    for (int i=0; i<1000; i++){
         pq.Remove(randomData[i]);
     }
     // report time
     stop = high_resolution_clock::now();
-    timer += "One Thousand Queue Based Removal: " + to_string(duration_cast<microseconds>(stop-start).count());
+    timer += "1000 Queue Based Removal: " + to_string(duration_cast<microseconds>(stop-start).count());
     timer += "\n";
 }
 
-TEST(Queue, TwoThousand)
-{
+TEST(Queue, TwoThousand){
     auto start = high_resolution_clock::now();
     auto stop = high_resolution_clock::now();
-    
     auto pq = QueuePriorityQueue(5000);
-    for (int i=0; i<2000; i++)
-    {
+    for (int i=0; i<2000; i++){
         pq.Insert(randomData[i]);
     }
     
     // report time
     stop = high_resolution_clock::now();
-    timer += "Two Thousand Queue Based Insertion: " + to_string(duration_cast<microseconds>(stop-start).count());
+    timer += "2000 Queue Based Insertion: " + to_string(duration_cast<microseconds>(stop-start).count());
     timer += "\n";
     start = high_resolution_clock::now();
+
     // remove everything
-    for (int i=0; i<1000; i++)
-    {
+    for (int i=0; i<1000; i++){
         pq.Remove(randomData[i]);
     }
+
     // report time
     stop = high_resolution_clock::now();
-    timer += "Two Thousand Queue Based Removal: " + to_string(duration_cast<microseconds>(stop-start).count());
+    timer += "2000 Queue Based Removal: " + to_string(duration_cast<microseconds>(stop-start).count());
     timer += "\n";
 }
 
-TEST(Queue, FiveThousand)
-{
+TEST(Queue, FiveThousand){
     auto start = high_resolution_clock::now();
     auto stop = high_resolution_clock::now();
-    
     auto pq = QueuePriorityQueue(5001);
-    for (int i=0; i<5000; i++)
-    {
+    for (int i=0; i<5000; i++){
         pq.Insert(randomData[i]);
     }
     
     // report time
     stop = high_resolution_clock::now();
-    timer += "Five Thousand Queue Based Insertion: " + to_string(duration_cast<microseconds>(stop-start).count());
+    timer += "5000 Queue Based Insertion: " + to_string(duration_cast<microseconds>(stop-start).count());
     timer += "\n";
     start = high_resolution_clock::now();
+
     // remove everything
-    for (int i=0; i<5000; i++)
-    {
+    for (int i=0; i<5000; i++){
         pq.Remove(randomData[i]);
     }
+
     // report time
     stop = high_resolution_clock::now();
-    timer += "Five Thousand Queue Based Removal: " + to_string(duration_cast<microseconds>(stop-start).count());
+    timer += "5000 Queue Based Removal: " + to_string(duration_cast<microseconds>(stop-start).count());
     timer += "\n";
 }
 
-TEST(Heap, FiveHundred)
-{
+TEST(Heap, FiveHundred){
     auto start = high_resolution_clock::now();
     auto stop = high_resolution_clock::now();
     
     HeapPriorityQueue hp(500);
-    for (int i=0; i<500; i++)
-    {
+    for (int i=0; i<500; i++){
         hp.Insert(randomData[i]);
     }
     
     // report time
     stop = high_resolution_clock::now();
-    timer += "Five Hundred Heap Based Insertion: " + to_string(duration_cast<microseconds>(stop-start).count());
+    timer += "500 Heap Based Insertion: " + to_string(duration_cast<microseconds>(stop-start).count());
     timer += "\n";
     start = high_resolution_clock::now();
+
     // remove everything
-    for (int i=0; i<1000; i++)
-    {
+    for (int i=0; i<1000; i++){
         hp.Remove(randomData[i]);
     }
+
     // report time
     stop = high_resolution_clock::now();
-    timer += "Five Hundred Heap Based Removal: " + to_string(duration_cast<microseconds>(stop-start).count());
+    timer += "500 Heap Based Removal: " + to_string(duration_cast<microseconds>(stop-start).count());
     timer += "\n";
 }
 
-TEST(Heap, Thousand)
-{
+TEST(Heap, Thousand){
     auto start = high_resolution_clock::now();
     auto stop = high_resolution_clock::now();
-    
     HeapPriorityQueue hp(1000);
-    for (int i=0; i<1000; i++)
-    {
+    for (int i=0; i<1000; i++){
         hp.Insert(randomData[i]);
     }
 
     // report time
     stop = high_resolution_clock::now();
-    timer += "One Thousand Heap Based Insertion: " + to_string(duration_cast<microseconds>(stop-start).count());
+    timer += "1000 Heap Based Insertion: " + to_string(duration_cast<microseconds>(stop-start).count());
     timer += "\n";
     start = high_resolution_clock::now();
+
     // remove everything
-    for (int i=0; i<1000; i++)
-    {
+    for (int i=0; i<1000; i++){
         hp.Remove(randomData[i]);
     }
+
     // report time
     stop = high_resolution_clock::now();
-    timer += "One Thousand Heap Based Removal: " + to_string(duration_cast<microseconds>(stop-start).count());
+    timer += "1000 Heap Based Removal: " + to_string(duration_cast<microseconds>(stop-start).count());
     timer += "\n";
 }
 
-TEST(Heap, TwoThousand)
-{
+TEST(Heap, TwoThousand){
     auto start = high_resolution_clock::now();
     auto stop = high_resolution_clock::now();
-    
     HeapPriorityQueue hp(2000);
-    for (int i=0; i<2000; i++)
-    {
+    for (int i=0; i<2000; i++){
         hp.Insert(randomData[i]);
     }
     
     // report time
     stop = high_resolution_clock::now();
-    timer += "Two Thousand Heap Based Insertion: " + to_string(duration_cast<microseconds>(stop-start).count());
+    timer += "2000 Heap Based Insertion: " + to_string(duration_cast<microseconds>(stop-start).count());
     timer += "\n";
     start = high_resolution_clock::now();
+
     // remove everything
-    for (int i=0; i<1000; i++)
-    {
+    for (int i=0; i<1000; i++){
         hp.Remove(randomData[i]);
     }
+
     // report time
     stop = high_resolution_clock::now();
-    timer += "Two Thousand Heap Based Removal: " + to_string(duration_cast<microseconds>(stop-start).count());
+    timer += "2000 Heap Based Removal: " + to_string(duration_cast<microseconds>(stop-start).count());
     timer += "\n";
 }
 
-TEST(Heap, FiveThousand)
-{
+TEST(Heap, FiveThousand){
     auto start = high_resolution_clock::now();
     auto stop = high_resolution_clock::now();
     
     HeapPriorityQueue hp(5000);
-    for (int i=0; i<5000; i++)
-    {
+    for (int i=0; i<5000; i++){
         hp.Insert(randomData[i]);
     }
     
     // report time
     stop = high_resolution_clock::now();
-    timer += "Five Thousand Heap Based Insertion: " + to_string(duration_cast<microseconds>(stop-start).count());
+    timer += "5000 Heap Based Insertion: " + to_string(duration_cast<microseconds>(stop-start).count());
     timer += "\n";
     start = high_resolution_clock::now();
+
     // remove everything
-    for (int i=0; i<1000; i++)
-    {
+    for (int i=0; i<1000; i++){
         hp.Remove(randomData[i]);
     }
+
     // report time
     stop = high_resolution_clock::now();
-    timer += "Five Thousand Heap Based Removal: " + to_string(duration_cast<microseconds>(stop-start).count());
+    timer += "5000 Heap Based Removal: " + to_string(duration_cast<microseconds>(stop-start).count());
     timer += "\n";
-
     std::cout << timer << std::endl;
     std::cout << "Time is in ms" << std::endl;
-
 }
 
 
-bool alreadyExists(int* data, size_t size, int payload)
-{
-    for (int i=0; i<size; i++)
-    {
-        if (data[i] == payload)
+bool alreadyExists(int* data, size_t size, int payload){
+    for (int i=0; i<size; i++){
+        if (data[i] == payload){
             return true;
+        }
     }
-
     return false;
 }
 
-int *getRandomData(int* data, size_t size)
-{
+int *getRandomData(int* data, size_t size){
     int randInt = 0;
-    for (int i=0; i<size; i++)
-    {
+    for (int i=0; i<size; i++){
         randInt = rand() % size + 1; // can't be 0
         
-        while (alreadyExists(data, size, randInt))
+        while (alreadyExists(data, size, randInt)){
             randInt = rand() % size + 1;
-
+        }
         data[i] = randInt;
-
     }
     return data;
 }
 
 
 int main(int argc, char **argv) {
-
     srand(time(NULL));
     getRandomData(randomData, 5000);
-
     std::cout << timer << std::endl;
-
     testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
 }
